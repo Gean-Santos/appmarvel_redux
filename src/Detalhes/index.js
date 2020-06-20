@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
-import { ScrollView, View, Image, Text } from 'react-native'
-import styles from './style'
-export default class Description extends Component {
+import React, { Component } from 'react';
+import { ScrollView, View, Image, Text } from 'react-native';
+import styles from './style';
+
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+class Description extends Component {
     static navigationOptions = {
         
         headerTitle: 'Description',
@@ -17,7 +20,7 @@ export default class Description extends Component {
     }
 
     render() {
-        const { hero } = this.props.navigation.state.params
+        const { hero } = this.props;
         const defaultDesc = 'Description not found';
         return (
            <ScrollView style={styles.fundo}>
@@ -31,9 +34,11 @@ export default class Description extends Component {
                     <Text style={styles.textHero}>{hero.name}</Text>
                     <Text style={styles.textDesc}>{hero.description !== ''? hero.description : defaultDesc}</Text>
                 </View>
-                
-                
            </ScrollView> 
-        )
+        );
     }
 }
+
+const mapStateToProps = state => ({ hero: state.content.hero });
+
+export default connect(mapStateToProps)(Description);

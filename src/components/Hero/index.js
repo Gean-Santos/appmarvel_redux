@@ -1,13 +1,18 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {TouchableOpacity, Image, Text} from 'react-native';
+import {FlatList, TouchableOpacity, Image, Text} from 'react-native';
+
+import  { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+
+import {loadHeroDetails} from '../../store/actions/actions';
 
 import styles from './styles';
 
 const Hero = props => {
   return (
     <TouchableOpacity
-      onPress={()=>props.onItemPress(props.id)}
+      onPress={()=>props.onItemPress(props.hero)}
       style={styles.item}
     >
       <Image style={styles.image}
@@ -20,4 +25,8 @@ const Hero = props => {
   );
 };
 
-export default Hero;
+
+const mapDispatchToProps = dispatch => (bindActionCreators({ loadHeroDetails }, dispatch));
+const mapStateToProps = state => ({hero: state.content.hero});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Hero);

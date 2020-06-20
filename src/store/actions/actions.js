@@ -2,7 +2,7 @@ import api from '../../api';
 
 import md5 from 'js-md5';
 
-import {LOAD_CHARACTERS, LOAD_LETTERS} from './actionTypes';
+import {LOAD_CHARACTERS, LOAD_LETTERS, SEARCH_BY_LETTER, HERO_DETAILS} from './actionTypes';
 
 const PUBLIC_KEY = 'a0766465ea4b57ae125da9e38d29844b';
 const PRIVATE_KEY = '2614f605fa45ccec50cbfdc9fbaa48b8d3d0e9c3';
@@ -16,7 +16,7 @@ export const loadCharacters = () =>{
     type: LOAD_CHARACTERS,
     payload: request,
   };
-}
+};
 
 export const loadLetters = () => {
   const request = require('../../letters.json');
@@ -24,4 +24,20 @@ export const loadLetters = () => {
     type: LOAD_LETTERS,
     payload: request,
   };
+};
+
+export const searchByLetter = letter => {
+  hash.update(timestamp + PRIVATE_KEY + PUBLIC_KEY);
+  const request = api.get(`/characters?ts=${timestamp}&orderBy=name&nameStartsWith=${letter}&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`);
+  return {
+    type: SEARCH_BY_LETTER,
+    payload: request,
+  }
+};
+
+export const loadHeroDetails = hero => {
+  return {
+    type: HERO_DETAILS,
+    payload: hero,
+  }
 }

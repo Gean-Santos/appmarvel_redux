@@ -6,7 +6,7 @@ import styles from './styles';
 import  { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 
-import { loadCharacters, loadLetters } from '../store/actions/actions';
+import { loadCharacters, loadLetters, searchByLetter } from '../store/actions/actions';
 
 import Hero from '../components/Hero';
 
@@ -29,19 +29,14 @@ class Home extends Component {
         this.props.loadCharacters();
         this.props.loadLetters();
      }
-    
-    // _byLetter = (letter) =>{
-    //     hash.update(timestamp + PRIVATE_KEY + PUBLIC_KEY)
-    //     api.get(`/characters?ts=${timestamp}&orderBy=name&nameStartsWith=${letter}&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`)
-    //     .then(per => per.data.data.results).then(personagens => this.setState({data:personagens}))
-    //     .then(()=> this.setState({letter:letter}))
-    //     .catch(error => console.log(error))  
-    // }
-    _renderItem = ({item}) => {
+
+     _renderItem = ({item}) => {
         return  (
             <Hero {...item} onItemPress={() => this._onItemPress(item)}/>
         )
     }
+    
+    
     _onItemPress = (item) => {
         this.props.navigation.navigate('Description', {hero: item})
     } 
@@ -55,12 +50,12 @@ class Home extends Component {
                     <Text style={styles.textPicker}>Starts With: </Text>
                         {letras ? 
                             <Picker
-                            style={styles.picker}
-                            textStyle={{fontSize: 22, fontWeight:'bold'}}
-                            selectedValue={letras}
-                            // onValueChange={(itemValue, itemIndex) =>
-                            // this._byLetter(itemValue)
-                            // }
+                                style={styles.picker}
+                                textStyle={{fontSize: 22, fontWeight:'bold'}}
+                                selectedValue={letras}
+                                onValueChange={(itemValue, itemIndex) =>
+                                    this.props.searchByLetter(itemValue)
+                                }
                             >
                                 <Picker.Item label="LETTER" value="" />
                                 {letras.letters.map(letra =>
@@ -68,12 +63,10 @@ class Home extends Component {
                                     value={letra.letter}  
                                     key={letra.id}
                                     />)
-                                }
-                                
+                                }  
                             </Picker>
                             : false
-                        }
-                        
+                        }    
                 </View>
                 {
                     heroes ? 
@@ -92,5 +85,5 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({ content: state.content });
-const mapDispatchToProps = dispatch => (bindActionCreators({ loadCharacters, loadLetters }, dispatch));
+const mapDispatchToProps = dispatch => (bindActionCreators({ loadCharacters, loadLetters, searchByLetter }, dispatch));
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
