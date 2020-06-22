@@ -21,6 +21,7 @@ class Description extends Component {
 
     render() {
         const { hero } = this.props;
+        console.log(hero);
         const defaultDesc = 'Description not found';
         return (
            <ScrollView style={styles.fundo}>

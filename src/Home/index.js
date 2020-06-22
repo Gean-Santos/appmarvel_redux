@@ -32,13 +32,13 @@ class Home extends Component {
 
      _renderItem = ({item}) => {
         return  (
-            <Hero {...item} onItemPress={() => this._onItemPress(item)}/>
+            <Hero {...item} />
         )
     }
     
     
-    _onItemPress = (item) => {
-        this.props.navigation.navigate('Description', {hero: item})
+    _onItemPress = () => {
+        this.props.navigation.navigate('Description')
     } 
     render() {
         const heroes = this.props.content.characters;

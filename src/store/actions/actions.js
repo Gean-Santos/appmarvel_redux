@@ -28,14 +28,14 @@ export const loadLetters = () => {
 
 export const searchByLetter = letter => {
   hash.update(timestamp + PRIVATE_KEY + PUBLIC_KEY);
-  const request = api.get(`/characters?ts=${timestamp}&orderBy=name&nameStartsWith=${letter}&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`);
+  const request = api.get(`/characters?ts=${timestamp}&orderBy=name&limit=50&nameStartsWith=${letter}&apikey=${PUBLIC_KEY}&hash=${hash.hex()}`);
   return {
     type: SEARCH_BY_LETTER,
     payload: request,
   }
 };
 
-export const loadHeroDetails = hero => {
+export const setHeroDetails = hero => {
   return {
     type: HERO_DETAILS,
     payload: hero,
