@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, FlatList, Text, Picker} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
+import { Picker } from '@react-native-community/picker'
 
 import styles from './styles';
 
@@ -35,11 +36,7 @@ class Home extends Component {
             <Hero {...item} />
         )
     }
-    
-    
-    _onItemPress = () => {
-        this.props.navigation.navigate('Description')
-    } 
+     
     render() {
         const heroes = this.props.content.characters;
         const letras = this.props.content.letters;
