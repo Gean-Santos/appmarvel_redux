@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize:20,
         fontWeight: 'bold',
-        
     },
 
     fundo:{
@@ -96,6 +95,5 @@ const styles = StyleSheet.create({
           justifyContent: 'center',
           borderRadius: 5,
     }
-
 })
 export default styles;
