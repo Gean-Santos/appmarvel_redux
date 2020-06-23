@@ -5,6 +5,7 @@ const INITIAL_STATE = {
       letters: [],
       characters: [],
       hero: [],
+      isVisible: false,
     }
   ]
 };
