@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     back:{
         height: "100%",
         alignItems: 'center',
-        backgroundColor: '#000'
+        backgroundColor: '#000',
     },
     flat:{
         backgroundColor: '#000',
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         // borderRadius: 5,
         // borderColor: 'red',
         marginVertical: 10,
-        paddingLeft: '5%'
+        paddingLeft: '5%',
     },
     picker:{
         width: '37%',
@@ -53,22 +53,21 @@ const styles = StyleSheet.create({
         
       },
     viewText:{
-          alignItems: 'center',
+        alignItems: 'center',
       },
     imageDesc:{
-          width:SCREEN_WIDTH, 
-          height:SCREEN_HEIGHT,
+        width:SCREEN_WIDTH, 
+        height:SCREEN_HEIGHT,
       },
     textHero:{
-          padding:10, 
-          fontSize:20,
-          fontWeight: 'bold',
-          color:'red',
-          backgroundColor: '#000',
-          width: '95%',
-          textAlign: 'center',
-          margin: 10
-          
+        padding:10, 
+        fontSize:20,
+        fontWeight: 'bold',
+        color:'red',
+        backgroundColor: '#000',
+        width: '95%',
+        textAlign: 'center',
+        margin: 10,   
     },
     textDesc:{
         padding:20,
@@ -83,17 +82,17 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     scrolDesc:{
-          height: '5%'
+        height: '5%',
     },
     viewButton: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     button: {
-          backgroundColor: 'red', 
-          width: '70%', 
-          justifyContent: 'center',
-          borderRadius: 5,
+        backgroundColor: 'red', 
+        width: '70%', 
+        justifyContent: 'center',
+        borderRadius: 5,
     }
 })
 export default styles;
