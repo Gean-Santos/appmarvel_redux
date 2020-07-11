@@ -11,7 +11,6 @@ import promise from 'redux-promise';
 import rootReducer from './store';
 
 import Home from './Home';
-import Description from './Detalhes';
 
 const Stack = createStackNavigator();
 const store = applyMiddleware(thunk, multi, promise)(createStore)(rootReducer);
@@ -22,7 +21,6 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Description" component={Description} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
