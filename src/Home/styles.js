@@ -81,6 +81,22 @@ const styles = StyleSheet.create({
         width: '95%',
         margin: 10,
     },
+    textTitleC:{
+        fontSize: 18,
+        color:'red',
+        textAlign: 'center',
+        backgroundColor: '#000',
+        margin: 10,
+        padding: 10,
+    },
+    viewComics: {
+        borderColor: 'red',
+        backgroundColor: '#FFF',
+        borderWidth: 2,
+        borderRadius: 5,
+        width: '95%',
+        margin: 10,
+    },
     scrolDesc:{
         height: '5%',
     },
@@ -93,6 +109,11 @@ const styles = StyleSheet.create({
         width: '70%', 
         justifyContent: 'center',
         borderRadius: 5,
+    },
+    textComics:{
+        margin: 8,
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
     }
 })
 export default styles;

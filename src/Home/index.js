@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
-import {View, FlatList, Text, Modal, Image, TouchableOpacity, Alert} from 'react-native';
+import {
+    View, 
+    FlatList, 
+    Text, 
+    Modal, 
+    Image, 
+    TouchableOpacity,
+    ScrollView,
+    Alert, 
+} from 'react-native';
 import { Picker } from '@react-native-community/picker'
 
 import styles from './styles';
@@ -41,11 +50,18 @@ class Home extends Component {
     _onModalPress = async () => {
         await this.props.setModalVisible(false);
     }
+    _onRenderComics = async(vetor) => {
+        // await vetor.comics.items.map(piao => 
+        //     <Text>{piao.name}</Text>
+        // );
+        Alert.alert(vetor=== undefined ? 'Nao deu' : toString(vetor.name))
+    }
 
     _onRenderModal = _ =>  {
         const hero = this.props.hero;
         const visivel = this.props.isVisible;
         const defaultDesc = 'Description not found';
+        console.log(hero);
         return (
           <View>
             {
@@ -53,21 +69,42 @@ class Home extends Component {
               animationType="slide"
               style={styles.fundo}
               visible={visivel} >
-                <Image 
-                  source={{uri: `${hero.thumbnail.path}.${hero.thumbnail.extension}`}} 
-                  style={styles.imageDesc}
-                  resizeMethod='resize'
-                  resizeMode='stretch'
-                />
-                <View style={styles.viewText}>
-                    <Text style={styles.textHero}>{hero.name}</Text>
-                    <Text style={styles.textDesc}>{hero.description !== ''? hero.description : defaultDesc}</Text>
-                </View>
-                <View style={styles.viewButton}>
-                    <TouchableOpacity style={styles.button} onPress={() => this._onModalPress()}>
-                        <Text style={{textAlign: 'center', fontSize: 18, padding: 10, color: '#FFF'}}>Voltar</Text>
-                    </TouchableOpacity>
-                </View>
+                <ScrollView>
+                    <Image 
+                    source={{uri: `${hero.thumbnail.path}.${hero.thumbnail.extension}`}} 
+                    style={styles.imageDesc}
+                    resizeMethod='resize'
+                    resizeMode='stretch'
+                    />
+                    <View style={styles.viewText}>
+                        <Text style={styles.textHero}>{hero.name}</Text>
+                        <Text style={styles.textDesc}>{hero.description !== ''? hero.description : defaultDesc}</Text>
+                        <View style={styles.viewComics}>
+                            <Text style={styles.textTitleC}>
+                                Comics do herói: {hero.comics.available}
+                            </Text>
+                            {hero ? hero.comics.items.map( comic => {
+                                return (
+                                    <View>
+                                        <Text
+                                            style={styles.textComics} 
+                                            key={hero.comics.items.name}
+                                        >
+                                            {comic.name}
+                                        </Text>
+                                    </View>
+                                    
+                                )
+                            }) : false}
+                        </View>
+                    </View>
+                    <View style={styles.viewButton}>
+                        <TouchableOpacity style={styles.button} onPress={() => this._onModalPress()}>
+                            <Text style={{textAlign: 'center', fontSize: 18, padding: 10, color: '#FFF'}}>Voltar</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+                
                 
             </Modal>
             : false
